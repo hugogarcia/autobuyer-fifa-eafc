@@ -1,0 +1,48 @@
+{
+	"custom": {
+		"networkAccess": "G",
+		"service_plat": "pc"
+	},
+	"et": "client",
+	"events": [
+		{
+			"type": "menu",
+			"pgid": "Transfer Targets - List View",
+			"core": {
+				"s": 63,
+				"pidt": "persona",
+				"pid": "1280024159",
+				"ts_event": "2023-03-11T21:52:21.818Z",
+				"en": "page_view",
+				"pidm": {
+					"nucleus": 2841067086
+				}
+			}
+		},
+		{
+			"type": "menu",
+			"pgid": "Item - Detail View",
+			"core": {
+				"s": 64,
+				"pidt": "persona",
+				"pid": "1280024159",
+				"ts_event": "2023-03-11T21:52:21.824Z",
+				"en": "page_view",
+				"pidm": {
+					"nucleus": 2841067086
+				}
+			}
+		}
+	],
+	"gid": 0,
+	"is_sess": true,
+	"loc": "pt-BR",
+	"plat": "web",
+	"rel": "prod",
+	"sid": "397fa2a7-ef73-40a6-a769-ff4b36975c7a",
+	"taxv": "1.1",
+	"tid": "FUT23WEB",
+	"tidt": "easku",
+	"ts_post": "2023-03-11T21:52:22.325Z",
+	"v": "23.5.0"
+}
