@@ -13,6 +13,10 @@ YOUR EA FC ACCOUNT ON THE WEB MAY BE BLOCKED FOR TRADING
 
 KEEP THIS RISK IN MIND
 
+# What does the bot do?
+- Bid on cards
+- Watch the cards that have already been bid, and bid again if necessary
+
 # Configure Spreadsheet (CSV)
 1. Find the player you want to search for on [Futbin](https://www.futbin.com/).
 2. Get the `ID` code, which will be on the left side with the player's information.
@@ -62,5 +66,5 @@ In the folder, there will be an `exe` file that will start the bot.
 
 # Donation
 If you liked the bot and can help me:
- 
+
 https://www.buymeacoffee.com/hugogarcia
