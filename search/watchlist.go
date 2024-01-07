@@ -20,8 +20,8 @@ func GetWatchlistAndRebid() {
 	for _, v := range trades.AuctionInfo {
 		nextBid := getNextBid(v.CurrentBid)
 
-		maxBid := entity.Players[v.ItemData.AssetId].MaxBid
-		if maxBid <= 0 {
+		player := entity.Players[v.ItemData.AssetId]
+		if player.MaxBid <= 0 {
 			logger.LogMessage(nil, fmt.Sprintf("Maxbid not found for playerId: %d -- Trade: %d", v.ItemData.AssetId, v.TradeId))
 			tradesToDelete = append(tradesToDelete, v.TradeId)
 			continue
@@ -33,7 +33,7 @@ func GetWatchlistAndRebid() {
 		}
 
 		//Delete trades when is not available
-		if nextBid > maxBid || v.Expires <= 0 || v.TradeState != "active" {
+		if nextBid > player.MaxBid || v.Expires <= 0 || v.TradeState != "active" {
 			tradesToDelete = append(tradesToDelete, v.TradeId)
 			continue
 		}
@@ -41,13 +41,13 @@ func GetWatchlistAndRebid() {
 		t := GetTradeById(v.TradeId)
 		nextBid = getNextBid(t.CurrentBid)
 
-		if nextBid > maxBid{
+		if nextBid > player.MaxBid {
 			tradesToDelete = append(tradesToDelete, v.TradeId)
 			continue
 		}
 
 		logger.LogMessage(nil, "BIDDING----------------------")
-		bid.MakeBid(v.TradeId, nextBid)
+		bid.MakeBid(v.TradeId, nextBid, player.Name)
 
 		time.Sleep(time.Second * 1)
 	}

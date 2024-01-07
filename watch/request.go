@@ -16,7 +16,7 @@ import (
 
 func MakeWatch(tradeIds uint64) {
 
-	url := "https://" + fifa.Host + "/ut/game/fifa23/watchlist"
+	url := "https://" + fifa.Host + "/ut/game/fc24/watchlist"
 
 	//logger.LogMessage(nil, "WATCHING  tradeId:", tradeIds)
 
@@ -59,7 +59,7 @@ func StopWatching(tradeIds string) error {
 	if tradeIds == "" {
 		return nil
 	}
-	url := fmt.Sprintf("https://%s/ut/game/fifa23/watchlist?tradeId=%s", fifa.Host, tradeIds)
+	url := fmt.Sprintf("https://%s/ut/game/fc24/watchlist?tradeId=%s", fifa.Host, tradeIds)
 
 	logger.LogMessage(nil, "Deleting --- tradeId:", tradeIds)
 
@@ -89,7 +89,7 @@ func StopWatching(tradeIds string) error {
 }
 
 func GetWatchList() entity.TradeResponse {
-	path := "/ut/game/fifa23/watchlist"
+	path := "/ut/game/fc24/watchlist"
 	body, err := request.GetBodyByPath(path)
 	if err != nil {
 		logger.PanicIt(err)
@@ -106,7 +106,7 @@ func GetWatchList() entity.TradeResponse {
 }
 
 func getMostRecentTrades() entity.TradeResponse {
-	path := "/ut/game/fifa23/transfermarket"
+	path := "/ut/game/fc24/transfermarket"
 	body, err := request.GetBodyByPath(path)
 	if err != nil {
 		logger.PanicIt(err)

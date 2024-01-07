@@ -1,21 +1,31 @@
 package main
 
 import (
+	"log"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
 
 	"github.com/hugogarcia/fifa-auto-buyer/auth"
+	"github.com/hugogarcia/fifa-auto-buyer/entity"
 	"github.com/hugogarcia/fifa-auto-buyer/logger"
 	"github.com/hugogarcia/fifa-auto-buyer/search"
+	"github.com/joho/godotenv"
 )
 
 func main() {
 	err := logger.SetLogFile("./logs.log")
-	if err != nil{
-		panic(err);
+	if err != nil {
+		panic(err)
 	}
+
+	err = godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
+	entity.LoadPlayersFromCSV()
 
 	auth.SetNewToken()
 	//db.ReadJsonFile()

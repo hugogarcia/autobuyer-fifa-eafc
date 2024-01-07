@@ -4,11 +4,8 @@ import (
 	"net/http"
 )
 
-//const Host = "utas.prd.s5.prd.futc-ext.gcp.ea.com:443"
-//const Host = "utas.external.s2.fut.ea.com:443"
-const Host = "utas.mob.v1.fut.ea.com:443"
-//const Host = "212.100.255.81:443"
+const Host = "utas.mob.v2.fut.ea.com"
 
-var TOKEN_UT = "9175a20a-05c5-416c-9227-e708ee7ff73a"
+var TOKEN_UT = "ccb5c71c-c466-43ba-ab1b-dd633f968e98"
 
 var FifaHeaders = http.Header{}

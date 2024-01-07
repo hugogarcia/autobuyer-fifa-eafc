@@ -9,13 +9,17 @@ import (
 	"github.com/hugogarcia/fifa-auto-buyer/entity"
 	"github.com/hugogarcia/fifa-auto-buyer/logger"
 	"github.com/hugogarcia/fifa-auto-buyer/request"
-	"github.com/hugogarcia/fifa-auto-buyer/watch"
 )
 
 func SearchPlayers() {
 	logger.LogMessage(nil, "searching players...")
 
 	for playerId, v := range entity.Players {
+		if v.MaxBid == 0 {
+			fmt.Println("Player:", v.Name, "without bid")
+			continue
+		}
+
 		searchByPlayer(playerId, v)
 		time.Sleep(time.Second * 7)
 	}
@@ -27,7 +31,7 @@ func searchByPlayer(id uint64, player entity.Player) {
 	//time.Sleep(player.TimeToWait)
 	logger.LogMessage(nil, "Searching player:", player.Name)
 
-	path := fmt.Sprintf("/ut/game/fifa23/transfermarket?num=21&start=0&type=player&maskedDefId=%d&macr=%d", id, player.MaxBid)
+	path := fmt.Sprintf("/ut/game/fc24/transfermarket?num=21&start=0&type=player&maskedDefId=%d&macr=%d", id, player.MaxBid)
 	body, err := request.GetBodyByPath(path)
 	if err != nil {
 		logger.PanicIt(err)
@@ -40,7 +44,7 @@ func searchByPlayer(id uint64, player entity.Player) {
 		logger.LogMessage(nil, err)
 	}
 
-	go watch.MakePin()
+	//go watch.MakePin()
 
 	tradesToBid := filterAvailableTrades(trades, player.MaxBid)
 
@@ -59,8 +63,8 @@ func searchByPlayer(id uint64, player entity.Player) {
 		if nextBid > player.MaxBid {
 			continue
 		}
-		
-		bid.MakeBid(v.TradeId, nextBid)
+
+		bid.MakeBid(v.TradeId, nextBid, player.Name)
 		time.Sleep(time.Second)
 	}
 }

@@ -48,7 +48,7 @@ type Events struct {
 	Core Core   `json:"core"`
 }
 
-var data = getFromFile()
+var data PinRequest //= getFromFile()
 
 func getFromFile() PinRequest {
 	content, err := os.ReadFile("event.json")

@@ -10,7 +10,7 @@ import (
 )
 
 func GetTradeLiteById(tradesQuery string) entity.TradeResponse {
-	path := "/ut/game/fifa23/trade/status/lite?tradeIds=" + tradesQuery
+	path := "/ut/game/fc24/trade/status/lite?tradeIds=" + tradesQuery
 	body, err := request.GetBodyByPath(path)
 	if err != nil {
 		logger.PanicIt(err)

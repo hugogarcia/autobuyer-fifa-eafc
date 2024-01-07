@@ -16,14 +16,14 @@ import (
 
 var lastBid = time.Now()
 
-var errorCount int;
+var errorCount int
 
-func MakeBid(tradeId, nextBid uint64) error {
-	url := fmt.Sprintf("https://"+fifa.Host+"/ut/game/fifa23/trade/%d/bid", tradeId)
+func MakeBid(tradeId, nextBid uint64, playerName string) error {
+	url := fmt.Sprintf("https://"+fifa.Host+"/ut/game/fc24/trade/%d/bid", tradeId)
 
-	logger.LogMessage(nil, "------------------- MAKING BID --- tradeId:", tradeId, "--- bid:", nextBid)
+	logger.LogMessage(nil, "------------------- MAKING BID --- tradeId:", " --- Player name: ", playerName, "--- bid:", nextBid)
 
-	if time.Since(lastBid).Seconds() <= 2{
+	if time.Since(lastBid).Seconds() <= 2 {
 		logger.LogMessage(nil, "------------------- Waiting for bid...")
 		time.Sleep(time.Second)
 	}
@@ -38,9 +38,9 @@ func MakeBid(tradeId, nextBid uint64) error {
 	if err != nil {
 		return err
 	}
-	
+
 	req.Header = fifa.FifaHeaders
-	req.Header.Set("X-UT-SID", fifa.TOKEN_UT)	
+	req.Header.Set("X-UT-SID", fifa.TOKEN_UT)
 	req.Proto = "HTTP/1.1"
 
 	resp, err := http.DefaultClient.Do(req)
@@ -55,15 +55,15 @@ func MakeBid(tradeId, nextBid uint64) error {
 		logger.LogMessage(err, "----------------- ERROR GETTING BODY", url, err)
 	}
 
-	if resp.StatusCode == http.StatusUnauthorized{
-		auth.SetNewToken();
-		return nil;
+	if resp.StatusCode == http.StatusUnauthorized {
+		auth.SetNewToken()
+		return nil
 	}
 
 	if resp.StatusCode >= 400 {
 		logger.LogMessage(nil, "------------------- ERROR WHEN MAKING BID, STATUS CODE: ", resp.StatusCode, string(body))
-		auth.SetNewToken();
-		watch.ResetWatch()		
+		auth.SetNewToken()
+		watch.ResetWatch()
 	} else {
 		logger.LogMessage(nil, "--------------------------------- BID SUCCESS")
 		errorCount = 0
@@ -73,4 +73,3 @@ func MakeBid(tradeId, nextBid uint64) error {
 
 	return err
 }
-
