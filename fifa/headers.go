@@ -6,6 +6,6 @@ import (
 
 const Host = "utas.mob.v2.fut.ea.com"
 
-var TOKEN_UT = "ccb5c71c-c466-43ba-ab1b-dd633f968e98"
+var TOKEN_UT = ""
 
 var FifaHeaders = http.Header{}

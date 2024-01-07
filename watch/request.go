@@ -15,10 +15,7 @@ import (
 )
 
 func MakeWatch(tradeIds uint64) {
-
 	url := "https://" + fifa.Host + "/ut/game/fc24/watchlist"
-
-	//logger.LogMessage(nil, "WATCHING  tradeId:", tradeIds)
 
 	ts := []watchRequest{{tradeIds}}
 	requestBody := auction{AuctionInfo: ts}
@@ -69,9 +66,6 @@ func StopWatching(tradeIds string) error {
 	}
 	req.Header = fifa.FifaHeaders
 	req.Header.Set("X-UT-SID", fifa.TOKEN_UT)
-	//req.Proto = "HTTP/1.1"
-	//req.ProtoMajor = 1
-	//req.ProtoMinor = 1
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {

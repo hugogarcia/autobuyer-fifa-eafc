@@ -28,7 +28,6 @@ type identification struct {
 }
 
 var reqAuth = auth{
-	//ClientVersion: 3, //1 - PC, 3 - ANDROID
 	ClientVersion:    1, //1 - PC, 3 - ANDROID
 	Ds:               "5cd338759c2840e4a793053b12b6eb60aa930183cea8dec69e493d05de17ac33",
 	GameSku:          os.Getenv("GAME_SKU"), //FFA24PS5
@@ -53,9 +52,8 @@ type AuthResponse struct {
 	PhishingToken  string `json:"phishingToken"`
 }
 
-var currentSKU = 2
+var currentSKU = 1
 var clientsSkus = []auth{
-	{ClientVersion: 3, Sku: "FUT23AND"},
-	{ClientVersion: 1, Sku: "FUT23WEB"},
-	{ClientVersion: 3, Sku: "FUT23IOS"},
+	{ClientVersion: 3, Sku: "FUT24AND"},
+	{ClientVersion: 1, Sku: "FUT24WEB"},
 }

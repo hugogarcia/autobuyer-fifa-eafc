@@ -40,7 +40,7 @@ func LoadPlayersFromCSV() {
 		}
 
 		if len(v) < 3 {
-			fmt.Printf("Problema na linha %d, faltou informação \n", i)
+			fmt.Printf("Problem on line %d, missing info \n", i)
 			continue
 		}
 
@@ -49,7 +49,7 @@ func LoadPlayersFromCSV() {
 		playerBid := v[2]
 
 		if playerId == "" || playerName == "" || playerBid == "" {
-			fmt.Printf("Problema na linha %d, faltou informação de ID ou LANCE MAXIMO \n", i)
+			fmt.Printf("Problem on line %d, missing info ID or MAX BID\n", i)
 		}
 
 		id, _ := strconv.ParseUint(playerId, 10, 64)
@@ -61,7 +61,5 @@ func LoadPlayersFromCSV() {
 		}
 	}
 
-	fmt.Println(Players)
-
-	fmt.Println("LISTA DE PLAYERS CARREGADOS")
+	fmt.Println("PLAYERS LOADED")
 }

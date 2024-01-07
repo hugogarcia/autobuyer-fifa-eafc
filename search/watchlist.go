@@ -53,9 +53,7 @@ func GetWatchlistAndRebid() {
 	}
 
 	go deleteBids(tradesToDelete)
-	//go bid.MakeWatch(tradesToWatch)
 
-	//go db.SaveTrades()
 	time.Sleep(20 * time.Second)
 	GetWatchlistAndRebid()
 }
@@ -69,7 +67,6 @@ func deleteBids(trades []uint64) {
 	ids := []string{}
 	for _, v := range trades {
 		ids = append(ids, fmt.Sprintf("%d", v))
-		//watch.StopWatching(fmt.Sprintf("%d", v))
 		time.Sleep(time.Second)
 	}
 

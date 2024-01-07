@@ -28,7 +28,6 @@ func SearchPlayers() {
 }
 
 func searchByPlayer(id uint64, player entity.Player) {
-	//time.Sleep(player.TimeToWait)
 	logger.LogMessage(nil, "Searching player:", player.Name)
 
 	path := fmt.Sprintf("/ut/game/fc24/transfermarket?num=21&start=0&type=player&maskedDefId=%d&macr=%d", id, player.MaxBid)
@@ -43,8 +42,6 @@ func searchByPlayer(id uint64, player entity.Player) {
 		logger.LogMessage(nil, string(body[:]))
 		logger.LogMessage(nil, err)
 	}
-
-	//go watch.MakePin()
 
 	tradesToBid := filterAvailableTrades(trades, player.MaxBid)
 
